@@ -4,7 +4,7 @@ from discord_webhook import DiscordWebhook
 
 #Settings
 GardenSize = 14
-url = 'https://discord.com/api/webhooks/909208201650651136/fIxfv8z5YKxWZQxGKcl5dNaOpW1Ib_DzyqcZSy0cc1TTYNu5Ekd_37gL8YmyrfOsRgNE'
+url = ''
 
 
 #Max webhook message size is 2000 char. We take the square of this which is 44. I am unsure if emoji words count as a single char or multiple. 
