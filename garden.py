@@ -4,6 +4,7 @@ from discord_webhook import DiscordWebhook
 
 #Settings
 GardenSize = 14
+#Discord webhook url
 url = ''
 
 
@@ -126,39 +127,40 @@ def drawpath():
                 position[1] = position[1]-1
                 continue
 
-def main():
-    while True:
-        #Draw garden path
-        drawpath()
 
-        #Add plants, bugs, etc
-        for y in range(GardenSize):
-            for x in range(GardenSize):
+while True:
+    #Draw garden path
+    drawpath()
 
-                for z, q in plant_emojis.items():
-                    if q >= random.randint(0,100):
-
-                        if garden[y][x] != path_emoji[1]:
-                            garden[y][x] = z
-
-        #Fill in empty space with grass
-        for y in range(GardenSize):
-            for x in range(GardenSize):
-                if garden[y][x] == '':
-                    garden[y][x] = ':seedling:'
-
-        wbhkstr = '‎\n'            
-
+    #Add plants, bugs, etc
+    for y in range(GardenSize):
         for x in range(GardenSize):
-            for y in range(GardenSize):
-                wbhkstr += garden[y][x]
-            wbhkstr += '\n'
 
-        print(len(wbhkstr))
+            for z, q in plant_emojis.items():
+                if q >= random.randint(0,100):
 
-        webhook = DiscordWebhook(url=url, content=wbhkstr)
-        response = webhook.execute()
+                    if garden[y][x] != path_emoji[1]:
+                        garden[y][x] = z
 
-        time.sleep(3600)
+    #Fill in empty space with grass
+    for y in range(GardenSize):
+        for x in range(GardenSize):
+            if garden[y][x] == '':
+                garden[y][x] = ':seedling:'
+
+    wbhkstr = '‎\n'            
+
+    for x in range(GardenSize):
+        for y in range(GardenSize):
+            wbhkstr += garden[y][x]
+        wbhkstr += '\n'
+
+    print(len(wbhkstr))
+
+    webhook = DiscordWebhook(url=url, content=wbhkstr)
+    response = webhook.execute()
+
+    garden = [[''] * GardenSize for i in range(GardenSize)]
+    time.sleep(3600)
 
 main()
